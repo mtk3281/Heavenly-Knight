@@ -78,8 +78,7 @@ metadata/_edit_group_ = true
 
 [node name="Sprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_3kpuq")
-animation = &"walk"
-frame_progress = 0.482909
+animation = &"crouch"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 15)
@@ -93,3 +92,9 @@ drag_horizontal_enabled = true
 drag_vertical_enabled = true
 drag_left_margin = 0.3
 drag_right_margin = 0.3
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.7
+one_shot = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
