@@ -1,0 +1,86 @@
+[gd_scene load_steps=10 format=3 uid="uid://1d83s1ts0qdy"]
+
+[ext_resource type="Script" path="res://coin.gd" id="1_ts7ef"]
+[ext_resource type="Texture2D" uid="uid://dae6as3b1i044" path="res://Assets/coins/gold_3.png" id="2_ki48d"]
+[ext_resource type="Texture2D" uid="uid://c86rc5eq23ex5" path="res://Assets/coins/gold_1.png" id="3_y8mbv"]
+[ext_resource type="Texture2D" uid="uid://bbxk7uuyrbg5w" path="res://Assets/coins/gold_2.png" id="4_0gqxm"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_pl45t"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_ki48d")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_y8mbv")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_0gqxm")
+}],
+"loop": true,
+"name": &"spin",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_r3tlw"]
+radius = 42.107
+
+[sub_resource type="Animation" id="Animation_2cix8"]
+resource_name = "flip"
+length = 0.9
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 0.9),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, -146), Vector2(-1, -48)]
+}
+
+[sub_resource type="Animation" id="Animation_da62y"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_60j4o"]
+_data = {
+"RESET": SubResource("Animation_da62y"),
+"flip": SubResource("Animation_2cix8")
+}
+
+[node name="coin" type="Area2D"]
+collision_layer = 4
+script = ExtResource("1_ts7ef")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_pl45t")
+animation = &"spin"
+autoplay = "spin"
+frame_progress = 0.951034
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(1, -1)
+shape = SubResource("CircleShape2D_r3tlw")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+speed_scale = 1.1
+libraries = {
+"": SubResource("AnimationLibrary_60j4o")
+}
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]

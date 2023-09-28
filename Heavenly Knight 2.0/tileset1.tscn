@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://cocuk7i0or47k"]
+
+[ext_resource type="TileSet" uid="uid://bgbl77ks6gxys" path="res://tileset1.tres" id="1_gkf0w"]
+
+[node name="TileMap" type="TileMap"]
+tile_set = ExtResource("1_gkf0w")
+cell_quadrant_size = 64
+format = 2

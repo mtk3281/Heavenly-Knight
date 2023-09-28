@@ -1,0 +1,28 @@
+#	if Input.is_action_pressed("right"):
+#		$Sprite2D.flip_h =false
+#		$Sprite2D.play("walk")
+#		direction = 1
+#		velocity.x = direction * SPEED
+#	elif Input.is_action_pressed("left"):
+#		$Sprite2D.flip_h = true
+#		$Sprite2D.play("walk")
+#		direction = -1
+#		velocity.x = direction * SPEED
+#	else:
+#		direction=0
+#		velocity.x = move_toward(velocity.x,0,SPEED)
+#		$Sprite2D.play("idle")
+		
+		
+		
+	direction = Input.get_axis("left", "right")
+	if direction:
+		$Sprite2D.play("walk")
+		if direction == 1:
+			$Sprite2D.flip_h = false
+		else:
+			$Sprite2D.flip_h = true
+		
+		velocity.x = direction * SPEED
+	else:
+		velocity.x = move_toward(velocity.x, 0, SPEED)

@@ -1,0 +1,16 @@
+[gd_scene load_steps=2 format=3 uid="uid://bc3yabmsst5u2"]
+
+[ext_resource type="Texture2D" uid="uid://ck2m8fnluln5u" path="res://Assets/background/blue_shroom.png" id="1_xn83u"]
+
+[node name="moving_background" type="ParallaxBackground"]
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="."]
+texture_filter = 1
+motion_scale = Vector2(0, 0)
+motion_mirroring = Vector2(1280, 780)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxLayer"]
+position = Vector2(-6, -191)
+scale = Vector2(1.25586, 0.952148)
+texture = ExtResource("1_xn83u")
+centered = false
