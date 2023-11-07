@@ -5,4 +5,5 @@
 [node name="TileMap" type="TileMap"]
 tile_set = ExtResource("1_gkf0w")
 cell_quadrant_size = 64
+collision_visibility_mode = 1
 format = 2
