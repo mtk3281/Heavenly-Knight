@@ -1,31 +1,40 @@
 extends CharacterBody2D
 
 
-const SPEED = 350.0
-const JUMP_VELOCITY = -800.0
+@export var SPEED = 430
+@export var JUMP_VELOCITY = -800.0
+@export_range(0.0, 1.0) var FRICTION = 0.1
+@export_range(0.0 , 1.0) var ACC = 0.25
+#const ACC = 125
+#const FRICTION = 160
 
-#@onready player
-# Get the gravity from the project settings to be synced with RigidBody nodes.
-var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
-var direction
+const MAX_JUMP = 2
+
+var GRAVITY = ProjectSettings.get_setting("physics/2d/default_gravity")
+
+var jump_count = 1
 var dead = false
-var start_pos
 var checkpoint
 
-
-func _ready():
-	start_pos = position
 
 func _physics_process(delta):
 	# Add the gravity.
 	if not is_on_floor():
-		velocity.y += gravity * delta
+		velocity.y += GRAVITY * delta
 
-	# Handle Jump.
-	if Input.is_action_just_pressed("jump") and is_on_floor():
-		velocity.y = JUMP_VELOCITY
+	if not is_on_floor():
+		$Sprite2D.play("air")
+
+	#jump implementation
+	if is_on_floor() and jump_count != 0:
+		jump_count = 0
+	if jump_count < MAX_JUMP:
+		if Input.is_action_just_pressed("jump"):
+			velocity.y = JUMP_VELOCITY
+			jump_count += 1
 	
-	direction = Input.get_axis("left", "right")
+	var direction = Input.get_axis("left","right")
+	
 	if direction:
 		if is_on_floor():
 			if  not dead:
@@ -35,23 +44,22 @@ func _physics_process(delta):
 		else:
 			$Sprite2D.flip_h = true
 
-		velocity.x = direction * SPEED
+		velocity.x = lerp(velocity.x, direction * SPEED, ACC)
 	else:
 		if not dead:
 			if is_on_floor():
 				$Sprite2D.play("idle")
 			else:
 				$Sprite2D.play("air")
-		velocity.x = move_toward(velocity.x, 0, SPEED)
+		velocity.x = lerp(velocity.x, 0.0, FRICTION)
 	move_and_slide()
+
 
 
 func _on_fallzone_body_entered(body):
 	if body.name == "Steve":
 		get_tree().change_scene_to_file("res://level_1.tscn")
 
-	
-	
 func bounce():
 	velocity.y = 0.7 * JUMP_VELOCITY
 	
