@@ -3,7 +3,7 @@ extends CharacterBody2D
 
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 @export_category("Basics")
-@export var SPEED = 70.0
+@export var SPEED = 80.0
 @export_enum("left:-1","right:1") var direction : int
 @export var detect_cliffs = true
 

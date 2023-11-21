@@ -9,17 +9,17 @@
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("2_ki48d")
-}, {
-"duration": 1.0,
 "texture": ExtResource("3_y8mbv")
 }, {
 "duration": 1.0,
 "texture": ExtResource("4_0gqxm")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_ki48d")
 }],
 "loop": true,
 "name": &"spin",
-"speed": 5.0
+"speed": 5.5
 }]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_r3tlw"]

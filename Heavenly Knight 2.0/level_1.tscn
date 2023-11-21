@@ -55,5 +55,6 @@ position = Vector2(1357, 360)
 [node name="enemy" parent="Node2D" instance=ExtResource("8_f1qr0")]
 position = Vector2(736, 252)
 direction = 1
+detect_cliffs = false
 
 [connection signal="body_entered" from="fallzone" to="Steve" method="_on_fallzone_body_entered"]

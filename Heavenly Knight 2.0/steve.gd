@@ -1,10 +1,10 @@
 extends CharacterBody2D
 
 
-@export var SPEED = 430
+@export var SPEED = 400
 @export var JUMP_VELOCITY = -800.0
 @export_range(0.0, 1.0) var FRICTION = 0.1
-@export_range(0.0 , 1.0) var ACC = 0.25
+@export_range(0.0 , 1.0) var ACC = 0.20
 #const ACC = 125
 #const FRICTION = 160
 
