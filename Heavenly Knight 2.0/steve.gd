@@ -1,7 +1,9 @@
 extends CharacterBody2D
 
+const FIREBALL = preload("fireball.tscn")
 
 @export var SPEED = 400
+@export var RUN_SPEED = 550
 @export var JUMP_VELOCITY = -800.0
 @export_range(0.0, 1.0) var FRICTION = 0.1
 @export_range(0.0 , 1.0) var ACC = 0.20
@@ -18,10 +20,12 @@ var checkpoint
 
 
 func _physics_process(delta):
+	if $Sprite2D.get_playing_speed() != 1.0:
+		$Sprite2D.set_speed_scale(1.0)
+		
 	# Add the gravity.
 	if not is_on_floor():
 		velocity.y += GRAVITY * delta
-
 	if not is_on_floor():
 		$Sprite2D.play("air")
 
@@ -34,7 +38,6 @@ func _physics_process(delta):
 			jump_count += 1
 	
 	var direction = Input.get_axis("left","right")
-	
 	if direction:
 		if is_on_floor():
 			if  not dead:
@@ -43,8 +46,11 @@ func _physics_process(delta):
 			$Sprite2D.flip_h = false
 		else:
 			$Sprite2D.flip_h = true
-
-		velocity.x = lerp(velocity.x, direction * SPEED, ACC)
+		if Input.is_action_pressed("run"):
+			velocity.x = lerp(velocity.x, direction * RUN_SPEED, ACC)
+			$Sprite2D.set_speed_scale(2.0)
+		else:
+			velocity.x = lerp(velocity.x, direction * SPEED, ACC)
 	else:
 		if not dead:
 			if is_on_floor():
@@ -53,6 +59,18 @@ func _physics_process(delta):
 				$Sprite2D.play("air")
 		velocity.x = lerp(velocity.x, 0.0, FRICTION)
 	move_and_slide()
+	
+	if Input.is_action_just_pressed("fire"):
+		var dir = 1 if not $Sprite2D.flip_h else -1
+		var FireInst = FIREBALL.instantiate()
+#		if dir:
+#			FireInst.position = $left.global_position
+#		else:
+#			FireInst.position = $right.position
+#		FireInst.direction = dir
+		FireInst.transform = $left.transform
+		get_parent().add_child(FireInst)
+		
 
 
 
@@ -72,6 +90,8 @@ func ouch(pos):
 		velocity.x = -1800
 	elif position.x > pos:
 		velocity.x = 1800
+	velocity.y = 750
+#	velocity.x = 300 
 	$Timer.start()
 	Input.action_release("left")
 	Input.action_release("right")

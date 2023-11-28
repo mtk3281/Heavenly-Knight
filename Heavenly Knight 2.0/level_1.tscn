@@ -29,6 +29,11 @@ layer_0/tile_data = PackedInt32Array(262152, 262146, 1, 262153, 262146, 1, 26215
 
 [node name="Steve" parent="." instance=ExtResource("1_iycjl")]
 position = Vector2(322, 454)
+SPEED = 400
+RUN_SPEED = 550
+JUMP_VELOCITY = -800.0
+FRICTION = 0.1
+ACC = 0.2
 
 [node name="ParallaxBackground" parent="." instance=ExtResource("4_ho5r6")]
 
