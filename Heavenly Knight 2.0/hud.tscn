@@ -1,15 +1,41 @@
-[gd_scene load_steps=5 format=3 uid="uid://drxe6dxbrl1gt"]
+[gd_scene load_steps=7 format=3 uid="uid://drxe6dxbrl1gt"]
 
-[ext_resource type="Texture2D" uid="uid://bso82ctdmnknl" path="res://Assets/HUD/coin_gold.png" id="1_blj3p"]
 [ext_resource type="Script" path="res://hud.gd" id="1_fr2sc"]
 [ext_resource type="FontFile" uid="uid://bdb2b6jr1o5u" path="res://Assets/fonts/BalsamiqSans-Bold.ttf" id="2_whf5p"]
+[ext_resource type="Texture2D" uid="uid://c86rc5eq23ex5" path="res://Assets/coins/gold_1.png" id="3_ba6wb"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8pojl"]
-bg_color = Color(0, 0, 0, 0.278431)
+bg_color = Color(0, 0, 0, 0.247059)
 corner_radius_top_left = 20
 corner_radius_top_right = 20
 corner_radius_bottom_right = 20
 corner_radius_bottom_left = 20
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3askb"]
+bg_color = Color(0.639863, 0.732987, 1, 0.858824)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0.752941, 0.784314, 1, 1)
+border_blend = true
+corner_radius_top_left = 14
+corner_radius_top_right = 14
+corner_radius_bottom_right = 14
+corner_radius_bottom_left = 14
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hcltd"]
+bg_color = Color(0.203922, 0.647059, 0.862745, 1)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0.8, 0.8, 0.8, 0.00784314)
+corner_radius_top_left = 14
+corner_radius_top_right = 14
+corner_radius_bottom_right = 14
+corner_radius_bottom_left = 14
+anti_aliasing_size = 1.481
 
 [node name="HUD" type="CanvasLayer"]
 script = ExtResource("1_fr2sc")
@@ -21,31 +47,61 @@ offset_right = 229.0
 offset_bottom = 90.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_8pojl")
 
-[node name="TextureRect" type="TextureRect" parent="."]
-offset_left = 33.0
-offset_top = 26.0
-offset_right = 84.0
-offset_bottom = 75.0
-texture = ExtResource("1_blj3p")
+[node name="TextureRect" type="TextureRect" parent="Panel"]
+offset_left = 16.0
+offset_top = 12.0
+offset_right = 67.0
+offset_bottom = 61.0
+texture = ExtResource("3_ba6wb")
 expand_mode = 1
 
-[node name="Label" type="Label" parent="."]
-offset_left = 98.0
-offset_top = 18.0
-offset_right = 127.0
-offset_bottom = 84.0
-theme_override_colors/font_color = Color(0.8, 0.666667, 0.133333, 1)
+[node name="Label" type="Label" parent="Panel"]
+offset_left = 79.0
+offset_top = 4.0
+offset_right = 108.0
+offset_bottom = 85.0
+theme_override_colors/font_color = Color(0.905882, 0.729412, 0.2, 1)
 theme_override_fonts/font = ExtResource("2_whf5p")
-theme_override_font_sizes/font_size = 52
+theme_override_font_sizes/font_size = 55
 text = "x"
 
-[node name="count" type="Label" parent="."]
-offset_left = 137.0
-offset_top = 12.0
-offset_right = 231.0
-offset_bottom = 99.0
-theme_override_colors/font_color = Color(0.8, 0.666667, 0.133333, 1)
+[node name="count" type="Label" parent="Panel"]
+offset_left = 117.0
+offset_top = -2.0
+offset_right = 211.0
+offset_bottom = 85.0
+theme_override_colors/font_color = Color(0.905882, 0.729412, 0.2, 1)
 theme_override_fonts/font = ExtResource("2_whf5p")
-theme_override_font_sizes/font_size = 70
+theme_override_font_sizes/font_size = 59
 text = "0"
 vertical_alignment = 1
+
+[node name="Label2" type="Label" parent="."]
+offset_left = 965.0
+offset_top = 50.0
+offset_right = 1036.0
+offset_bottom = 116.0
+theme_override_colors/font_color = Color(0.376471, 0.584314, 1, 1)
+theme_override_fonts/font = ExtResource("2_whf5p")
+theme_override_font_sizes/font_size = 29
+text = "HP"
+uppercase = true
+
+[node name="Control" type="HBoxContainer" parent="."]
+offset_left = 1010.0
+offset_top = 47.0
+offset_right = 1221.0
+offset_bottom = 121.0
+alignment = 1
+
+[node name="ProgressBar" type="ProgressBar" parent="Control"]
+custom_minimum_size = Vector2(0, 35)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0.180392, 0.443137, 1, 1)
+theme_override_font_sizes/font_size = 24
+theme_override_styles/background = SubResource("StyleBoxFlat_3askb")
+theme_override_styles/fill = SubResource("StyleBoxFlat_hcltd")
+max_value = 4.0
+value = 3.0
+rounded = true

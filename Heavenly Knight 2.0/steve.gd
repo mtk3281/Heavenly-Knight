@@ -18,7 +18,10 @@ var jump_count = 1
 var dead = false
 var checkpoint
 
-
+func _ready():
+	GlobalVar.life_count = 4
+	
+	
 func _physics_process(delta):
 	if $Sprite2D.get_playing_speed() != 1.0:
 		$Sprite2D.set_speed_scale(1.0)
@@ -84,26 +87,30 @@ func bounce():
 	velocity.y = 0.7 * JUMP_VELOCITY
 	
 func ouch(pos):
-	dead = true
-	set_modulate(Color(1.0,0.3,0.3,0.3))
-	$Sprite2D.play("crouch")
-	
+#	dead = true
+	GlobalVar.life_count -= 1
+	if GlobalVar.life_count ==0:
+		$Sprite2D.play("crouch")
+		set_modulate(Color(1.0,0.3,0.3,0.3))
+		Input.action_release("left")
+		Input.action_release("right")
+		Input.action_release("jump")
+		$Timer.start()
 	if position.x < pos:
 		velocity.x = -1800
 	elif position.x > pos:
 		velocity.x = 1800
 	velocity.y = 750
 #	velocity.x = 300 
-	$Timer.start()
-	Input.action_release("left")
-	Input.action_release("right")
-	Input.action_release("jump")
+	
+
 	
 	
 
 
 func _on_timer_timeout():
-	queue_free()
-	GlobalVar.life_count -= 1
+#	queue_free()
 	get_tree().change_scene_to_file("res://level_1.tscn")
+	
+#	get_tree().change_scene_to_file("res://level_1.tscn")
 	

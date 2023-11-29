@@ -2,8 +2,8 @@ extends CanvasLayer
 
 
 func _ready():
-	$count.text = str(0)
+	$Panel/count.text = str(0)
 
 func _physics_process(_delta):
-	$count.text = str(GlobalVar.coin)
-	
+	$Panel/count.text = str(GlobalVar.coin)
+	$Control/ProgressBar.set_value_no_signal(GlobalVar.life_count)
