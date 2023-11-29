@@ -18,7 +18,6 @@ var GRAVITY = ProjectSettings.get_setting("physics/2d/default_gravity")
 var jump_count = 1
 var dead = false
 
-#func _ready():
 #	GlobalVar.checkpoint = position
 #	print(GlobalVar.checkpoint)
 
@@ -38,7 +37,6 @@ func _physics_process(delta):
 		jump_count = 0
 	if jump_count < MAX_JUMP:
 		if Input.is_action_just_pressed("jump"):
-			velocity.y = JUMP_VELOCITY
 			jump_count += 1
 	
 	var direction = Input.get_axis("left","right")
