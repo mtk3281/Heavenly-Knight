@@ -74,6 +74,11 @@ height = 62.0
 [node name="Steve" type="CharacterBody2D"]
 collision_mask = 2
 script = ExtResource("1_1bn53")
+SPEED = null
+RUN_SPEED = null
+JUMP_VELOCITY = null
+FRICTION = null
+ACC = null
 
 [node name="Sprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_3kpuq")

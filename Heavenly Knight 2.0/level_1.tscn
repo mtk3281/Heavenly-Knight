@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://ce4kpvpxivq7d"]
+[gd_scene load_steps=11 format=3 uid="uid://ce4kpvpxivq7d"]
 
 [ext_resource type="PackedScene" uid="uid://bafabnogsjc30" path="res://steve.tscn" id="1_iycjl"]
 [ext_resource type="PackedScene" uid="uid://cocuk7i0or47k" path="res://tileset1.tscn" id="3_2to1c"]
@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://bc3yabmsst5u2" path="res://moving_background.tscn" id="4_ho5r6"]
 [ext_resource type="PackedScene" uid="uid://1d83s1ts0qdy" path="res://coin.tscn" id="6_3kc2o"]
 [ext_resource type="PackedScene" uid="uid://behsg1e0cuu2j" path="res://enemy.tscn" id="8_f1qr0"]
+[ext_resource type="PackedScene" uid="uid://l4ol1jmu1v2r" path="res://check_point.tscn" id="9_25kmy"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_j0r6r"]
 size = Vector2(5360, 154)
@@ -29,11 +30,6 @@ layer_0/tile_data = PackedInt32Array(262152, 262146, 1, 262153, 262146, 1, 26215
 
 [node name="Steve" parent="." instance=ExtResource("1_iycjl")]
 position = Vector2(322, 454)
-SPEED = 400
-RUN_SPEED = 550
-JUMP_VELOCITY = -800.0
-FRICTION = 0.1
-ACC = 0.2
 
 [node name="ParallaxBackground" parent="." instance=ExtResource("4_ho5r6")]
 
@@ -56,6 +52,9 @@ position = Vector2(1579, 385)
 position = Vector2(1357, 360)
 
 [node name="Node2D" type="Node2D" parent="."]
+
+[node name="CheckPoint" parent="Node2D" instance=ExtResource("9_25kmy")]
+position = Vector2(428, 393)
 
 [node name="enemy" parent="Node2D" instance=ExtResource("8_f1qr0")]
 position = Vector2(736, 252)

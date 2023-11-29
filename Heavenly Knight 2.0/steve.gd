@@ -1,7 +1,7 @@
 extends CharacterBody2D
 
 const FIREBALL = preload("fireball.tscn")
-
+const PLAYER = preload("res://steve.tscn")
 @export var SPEED = 400
 @export var RUN_SPEED = 550
 @export var JUMP_VELOCITY = -800.0
@@ -10,13 +10,17 @@ const FIREBALL = preload("fireball.tscn")
 #const ACC = 125
 #const FRICTION = 160
 
+
 const MAX_JUMP = 2
 
 var GRAVITY = ProjectSettings.get_setting("physics/2d/default_gravity")
 
 var jump_count = 1
 var dead = false
-var checkpoint
+
+#func _ready():
+#	GlobalVar.checkpoint = position
+#	print(GlobalVar.checkpoint)
 
 
 func _physics_process(delta):
@@ -98,10 +102,16 @@ func ouch(pos):
 	Input.action_release("jump")
 	
 	
-
-
+func update_checkpoint():
+	pass
+	GlobalVar.checkpoint = position
+	print(position)
+	
 func _on_timer_timeout():
-	queue_free()
+#	var plr = PLAYER.instantiate()
+#	get_parent().add_child(plr)
+#	plr.position = GlobalVar.checkpoint
 	GlobalVar.life_count -= 1
+	
 	get_tree().change_scene_to_file("res://level_1.tscn")
 	

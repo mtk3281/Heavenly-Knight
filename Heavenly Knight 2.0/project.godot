@@ -80,6 +80,7 @@ fire={
 2d_physics/layer_4="enemy"
 2d_physics/layer_5="fallzone"
 2d_physics/layer_6="fireball"
+2d_physics/layer_7="checkpoint"
 
 [physics]
 
