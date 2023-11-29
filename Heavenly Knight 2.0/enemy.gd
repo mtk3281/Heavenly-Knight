@@ -49,6 +49,11 @@ func _on_side_body_entered(body):
 		body.ouch(position.x)
 		$Timer.start()
 
+func die():
+	$AnimatedSprite2D.flip_v = true
+	SPEED = 0
+	$AnimationPlayer.play("died")
+	$Timer.start()
 
 
 func _on_timer_timeout():

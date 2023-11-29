@@ -36,6 +36,8 @@ func _physics_process(delta):
 		if Input.is_action_just_pressed("jump"):
 			velocity.y = JUMP_VELOCITY
 			jump_count += 1
+	if is_on_wall():
+		jump_count = 0
 	
 	var direction = Input.get_axis("left","right")
 	if direction:
@@ -63,12 +65,12 @@ func _physics_process(delta):
 	if Input.is_action_just_pressed("fire"):
 		var dir = 1 if not $Sprite2D.flip_h else -1
 		var FireInst = FIREBALL.instantiate()
-#		if dir:
-#			FireInst.position = $left.global_position
-#		else:
-#			FireInst.position = $right.position
-#		FireInst.direction = dir
-		FireInst.transform = $left.transform
+		FireInst.global_position = global_position
+		
+		FireInst.position.x = global_position.x + (50 * dir)
+		FireInst.position.y = global_position.y+20
+
+		FireInst.direction = dir
 		get_parent().add_child(FireInst)
 		
 

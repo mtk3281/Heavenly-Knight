@@ -1,25 +1,57 @@
-[gd_scene load_steps=4 format=3 uid="uid://781nmeyefk35"]
+[gd_scene load_steps=8 format=3 uid="uid://781nmeyefk35"]
 
 [ext_resource type="Script" path="res://fireball.gd" id="1_gxmm1"]
+[ext_resource type="Texture2D" uid="uid://o088nypq41e2" path="res://Assets/player/fireball3.png" id="2_0vkin"]
 [ext_resource type="Texture2D" uid="uid://cb4rym4lvfupa" path="res://Assets/player/fireball2.png" id="2_b8mcw"]
+[ext_resource type="Texture2D" uid="uid://bke6hsd5exnhv" path="res://Assets/player/fireball1.png" id="4_hhipm"]
+[ext_resource type="Texture2D" uid="uid://ca2c1lo2e7331" path="res://Assets/player/fireball5.png" id="5_s6sv4"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_kuflm"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_0vkin")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_b8mcw")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_hhipm")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_s6sv4")
+}],
+"loop": true,
+"name": &"fire",
+"speed": 8.0
+}]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_wahei"]
 radius = 15.0333
 
-[node name="fireball" type="Node2D"]
+[node name="fireball" type="CharacterBody2D"]
+collision_layer = 32
+collision_mask = 3
 script = ExtResource("1_gxmm1")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-scale = Vector2(0.55, 0.55)
-texture = ExtResource("2_b8mcw")
+[node name="AnimatedSprite" type="AnimatedSprite2D" parent="."]
+scale = Vector2(0.5, 0.5)
+sprite_frames = SubResource("SpriteFrames_kuflm")
+animation = &"fire"
+autoplay = "fire"
+frame_progress = 0.451142
 
 [node name="Area2D" type="Area2D" parent="."]
 collision_layer = 32
-collision_mask = 8
+collision_mask = 10
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 shape = SubResource("CircleShape2D_wahei")
 
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
 
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_wahei")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
 [connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]
