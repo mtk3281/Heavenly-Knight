@@ -19,7 +19,12 @@ var dead = false
 var checkpoint
 
 func _ready():
+	GlobalVar.player_pos = global_position
 	GlobalVar.life_count = 4
+	GlobalVar.total_coin =len(get_tree().get_nodes_in_group("Coins"))
+	GlobalVar.total_enemy =len(get_tree().get_nodes_in_group("Enemies"))	
+	GlobalVar.coin = 0
+	
 	
 	
 func _physics_process(delta):
@@ -81,13 +86,16 @@ func _physics_process(delta):
 
 func _on_fallzone_body_entered(body):
 	if body.name == "Steve":
-		get_tree().change_scene_to_file("res://level_1.tscn")
+		GlobalVar.life_count -= 1
+		global_position = GlobalVar.player_pos
 
+#called in enemy script
 func bounce():
 	velocity.y = 0.7 * JUMP_VELOCITY
 	
 func ouch(pos):
 #	dead = true
+	velocity.y = -350
 	GlobalVar.life_count -= 1
 	if GlobalVar.life_count ==0:
 		$Sprite2D.play("crouch")
@@ -96,21 +104,19 @@ func ouch(pos):
 		Input.action_release("right")
 		Input.action_release("jump")
 		$Timer.start()
-	if position.x < pos:
-		velocity.x = -1800
-	elif position.x > pos:
-		velocity.x = 1800
-	velocity.y = 750
-#	velocity.x = 300 
-	
 
+#	if position.x < pos:
+#		velocity.x = -200
+#	elif position.x > pos:
+#		velocity.x = 200
+#
+
+	if is_on_floor():
+		global_position = GlobalVar.player_pos
+		if $Sprite2D.flip_h:
+			$Sprite2D.flip_h = false
 	
 	
-
-
 func _on_timer_timeout():
-#	queue_free()
 	get_tree().change_scene_to_file("res://level_1.tscn")
-	
-#	get_tree().change_scene_to_file("res://level_1.tscn")
 	

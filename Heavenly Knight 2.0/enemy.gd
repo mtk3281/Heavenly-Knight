@@ -34,27 +34,33 @@ func _on_top_body_entered(body):
 	if body.name == "Steve":
 		$AnimatedSprite2D.play("squash")
 		SPEED = 0
-		$top.set_collision_layer_value(4,false)
-		$top.set_collision_mask_value(1,false)
-		$side.set_collision_mask_value(1,false)
-		set_collision_layer_value(4,false)
-		set_collision_mask_value(1,false)
+		
+		maskoff()
 		$Timer.start()
-		body.bounce()
+#		body.bounce()
 
+func maskoff():
+	$top.set_collision_layer_value(4,false)
+	$top.set_collision_mask_value(1,false)
+	$side.set_collision_mask_value(1,false)
+	set_collision_layer_value(4,false)
+	set_collision_mask_value(1,false)
 
 func _on_side_body_entered(body):
 	if body.name == "Steve":
 		SPEED = 0
+		maskoff()
 		body.ouch(position.x)
 		$Timer.start()
 
 func die():
 	$AnimatedSprite2D.flip_v = true
 	SPEED = 0
+	maskoff()
 	$AnimationPlayer.play("died")
 	$Timer.start()
 
 
 func _on_timer_timeout():
+	GlobalVar.enemy_dead_count += 1
 	queue_free()

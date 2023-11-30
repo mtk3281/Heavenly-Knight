@@ -1,85 +1,144 @@
-[gd_scene load_steps=7 format=3 uid="uid://drxe6dxbrl1gt"]
+[gd_scene load_steps=11 format=3 uid="uid://drxe6dxbrl1gt"]
 
 [ext_resource type="Script" path="res://hud.gd" id="1_fr2sc"]
 [ext_resource type="FontFile" uid="uid://bdb2b6jr1o5u" path="res://Assets/fonts/BalsamiqSans-Bold.ttf" id="2_whf5p"]
 [ext_resource type="Texture2D" uid="uid://c86rc5eq23ex5" path="res://Assets/coins/gold_1.png" id="3_ba6wb"]
-[ext_resource type="StyleBox" uid="uid://36f0nr8srdyg" path="res://lifebar styles/redlifebar.tres" id="4_f61ql"]
-[ext_resource type="StyleBox" uid="uid://bkif01tg274pu" path="res://lifebar styles/bluelifebar.tres" id="5_wg4lf"]
+[ext_resource type="StyleBox" uid="uid://cxhlr5jghheyh" path="res://lifebar styles/blueback.tres" id="4_7b7w7"]
+[ext_resource type="StyleBox" uid="uid://crlgjd1vv1arw" path="res://lifebar styles/flickColor.tres" id="5_cj8pj"]
+[ext_resource type="Texture2D" uid="uid://ccjii65i6fcdu" path="res://Assets/enemies/slimeBlue_blue.png" id="6_tmm2s"]
+[ext_resource type="Texture2D" uid="uid://cfovh6al0qsk2" path="res://Assets/enemies/slimeBlue.png" id="8_yxdw4"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8pojl"]
-bg_color = Color(0, 0, 0, 0.247059)
-corner_radius_top_left = 20
-corner_radius_top_right = 20
-corner_radius_bottom_right = 20
-corner_radius_bottom_left = 20
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pdu5a"]
+bg_color = Color(0.905882, 0.729412, 0.2, 1)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0.403922, 0.972549, 0.0745098, 0)
+border_blend = true
+corner_radius_top_left = 14
+corner_radius_top_right = 14
+corner_radius_bottom_right = 14
+corner_radius_bottom_left = 14
+anti_aliasing_size = 5.454
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vp61k"]
+bg_color = Color(0.203922, 0.827451, 1, 1)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0.403922, 0.972549, 0.0745098, 0)
+border_blend = true
+corner_radius_top_left = 14
+corner_radius_top_right = 14
+corner_radius_bottom_right = 14
+corner_radius_bottom_left = 14
+anti_aliasing_size = 5.454
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_7qw60"]
+animations = [{
+"frames": [],
+"loop": true,
+"name": &"coin",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("6_tmm2s")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_yxdw4")
+}],
+"loop": true,
+"name": &"enemy",
+"speed": 3.0
+}]
 
 [node name="HUD" type="CanvasLayer"]
 script = ExtResource("1_fr2sc")
-
-[node name="Panel" type="Panel" parent="."]
-offset_left = 17.0
-offset_top = 14.0
-offset_right = 229.0
-offset_bottom = 90.0
-theme_override_styles/panel = SubResource("StyleBoxFlat_8pojl")
-
-[node name="TextureRect" type="TextureRect" parent="Panel"]
-layout_mode = 0
-offset_left = 16.0
-offset_top = 12.0
-offset_right = 67.0
-offset_bottom = 61.0
-texture = ExtResource("3_ba6wb")
-expand_mode = 1
-
-[node name="Label" type="Label" parent="Panel"]
-layout_mode = 0
-offset_left = 79.0
-offset_top = 4.0
-offset_right = 108.0
-offset_bottom = 85.0
-theme_override_colors/font_color = Color(0.905882, 0.729412, 0.2, 1)
-theme_override_fonts/font = ExtResource("2_whf5p")
-theme_override_font_sizes/font_size = 55
-text = "x"
-
-[node name="count" type="Label" parent="Panel"]
-layout_mode = 0
-offset_left = 117.0
-offset_top = -2.0
-offset_right = 211.0
-offset_bottom = 85.0
-theme_override_colors/font_color = Color(0.905882, 0.729412, 0.2, 1)
-theme_override_fonts/font = ExtResource("2_whf5p")
-theme_override_font_sizes/font_size = 59
-text = "0"
-vertical_alignment = 1
 
 [node name="Label2" type="Label" parent="."]
 offset_left = 965.0
 offset_top = 50.0
 offset_right = 1036.0
 offset_bottom = 116.0
-theme_override_colors/font_color = Color(0.345098, 0.698039, 1, 1)
+theme_override_colors/font_color = Color(1, 0.270588, 0.294118, 1)
 theme_override_fonts/font = ExtResource("2_whf5p")
 theme_override_font_sizes/font_size = 29
 text = "HP"
 uppercase = true
 
-[node name="Control" type="HBoxContainer" parent="."]
+[node name="Health" type="HBoxContainer" parent="."]
 offset_left = 1010.0
 offset_top = 47.0
 offset_right = 1221.0
 offset_bottom = 121.0
 alignment = 1
 
-[node name="ProgressBar" type="ProgressBar" parent="Control"]
+[node name="ProgressBar" type="ProgressBar" parent="Health"]
 custom_minimum_size = Vector2(0, 35)
 layout_mode = 2
 size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0.94902, 0.94902, 0.94902, 1)
 theme_override_font_sizes/font_size = 24
-theme_override_styles/background = ExtResource("4_f61ql")
-theme_override_styles/fill = ExtResource("5_wg4lf")
+theme_override_styles/background = ExtResource("4_7b7w7")
+theme_override_styles/fill = ExtResource("5_cj8pj")
 max_value = 4.0
+step = 0.0
 value = 3.0
 rounded = true
+
+[node name="CoinImg" type="TextureRect" parent="."]
+offset_left = 36.0
+offset_top = 48.0
+offset_right = 78.0
+offset_bottom = 91.0
+texture = ExtResource("3_ba6wb")
+expand_mode = 1
+
+[node name="Coin" type="HBoxContainer" parent="."]
+offset_left = 85.0
+offset_top = 48.0
+offset_right = 296.0
+offset_bottom = 90.0
+
+[node name="ProgressBar" type="ProgressBar" parent="Coin"]
+custom_minimum_size = Vector2(0, 35)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0.94902, 0.94902, 0.94902, 1)
+theme_override_font_sizes/font_size = 24
+theme_override_styles/background = ExtResource("4_7b7w7")
+theme_override_styles/fill = SubResource("StyleBoxFlat_pdu5a")
+step = 0.0
+rounded = true
+
+[node name="Enemy" type="HBoxContainer" parent="."]
+offset_left = 87.0
+offset_top = 107.0
+offset_right = 298.0
+offset_bottom = 149.0
+
+[node name="ProgressBar" type="ProgressBar" parent="Enemy"]
+custom_minimum_size = Vector2(0, 35)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0.94902, 0.94902, 0.94902, 1)
+theme_override_font_sizes/font_size = 24
+theme_override_styles/background = ExtResource("4_7b7w7")
+theme_override_styles/fill = SubResource("StyleBoxFlat_vp61k")
+step = 0.0
+rounded = true
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(52, 128)
+sprite_frames = SubResource("SpriteFrames_7qw60")
+animation = &"enemy"
+autoplay = "enemy"
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.4
+autostart = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
