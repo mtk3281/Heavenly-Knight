@@ -1,0 +1,64 @@
+[gd_scene load_steps=5 format=3 uid="uid://ci4trv02kbmsr"]
+
+[ext_resource type="Texture2D" uid="uid://bjl5di2u464to" path="res://Assets/world_tiles/ground_sand_broken.png" id="1_kjvc0"]
+
+[sub_resource type="Animation" id="Animation_misem"]
+resource_name = "moving"
+length = 1.6
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.8, 1.6),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(250, 0), Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_egac1"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ixoc3"]
+_data = {
+"RESET": SubResource("Animation_egac1"),
+"moving": SubResource("Animation_misem")
+}
+
+[node name="MovingPlatform" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="AnimatableBody2D" type="AnimatableBody2D" parent="."]
+collision_layer = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="AnimatableBody2D"]
+scale = Vector2(0.6, 0.6)
+texture = ExtResource("1_kjvc0")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="AnimatableBody2D"]
+polygon = PackedVector2Array(-104, -28, -110, -26, -113, -21, -114, -16, -114, -9, -98, 26, -97, 28, 95, 21, 114, -10, 113, -24, 107, -27, 101, -28)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+root_node = NodePath("../AnimatableBody2D")
+autoplay = "moving"
+libraries = {
+"": SubResource("AnimationLibrary_ixoc3")
+}
