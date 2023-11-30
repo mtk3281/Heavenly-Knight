@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://ce4kpvpxivq7d"]
+[gd_scene load_steps=14 format=3 uid="uid://ce4kpvpxivq7d"]
 
 [ext_resource type="PackedScene" uid="uid://bafabnogsjc30" path="res://steve.tscn" id="1_iycjl"]
 [ext_resource type="PackedScene" uid="uid://cocuk7i0or47k" path="res://tileset1.tscn" id="3_2to1c"]
@@ -11,6 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://bo8kr24yrvxhd" path="res://checkpoint.tscn" id="9_eo5go"]
 [ext_resource type="PackedScene" uid="uid://cpehtmwc1xlmu" path="res://life_potion.tscn" id="10_xlsls"]
 [ext_resource type="PackedScene" uid="uid://ci4trv02kbmsr" path="res://MovingPlatform.tscn" id="11_jawfk"]
+[ext_resource type="PackedScene" uid="uid://bomta4dxcj3ln" path="res://spring.tscn" id="12_mjp2c"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_j0r6r"]
 size = Vector2(5360, 154)
@@ -62,18 +63,6 @@ position = Vector2(1395, 407)
 position = Vector2(736, 252)
 direction = 1
 
-[node name="enemy5" parent="Enemies" groups=["Enemies"] instance=ExtResource("8_f1qr0")]
-position = Vector2(1070, 445)
-direction = 1
-
-[node name="enemy6" parent="Enemies" groups=["Enemies"] instance=ExtResource("8_f1qr0")]
-position = Vector2(772, 408)
-direction = 1
-
-[node name="enemy4" parent="Enemies" groups=["Enemies"] instance=ExtResource("8_f1qr0")]
-position = Vector2(520, 438)
-direction = 1
-
 [node name="enemy2" parent="Enemies" groups=["Enemies"] instance=ExtResource("8_f1qr0")]
 position = Vector2(965, 418)
 direction = 1
@@ -90,13 +79,13 @@ position = Vector2(443, 433)
 [node name="Life_potion" parent="." instance=ExtResource("10_xlsls")]
 position = Vector2(1212, 317)
 
-[node name="Life_potion2" parent="." instance=ExtResource("10_xlsls")]
-position = Vector2(1372, 325)
-
 [node name="movingPlatform" parent="." instance=ExtResource("11_jawfk")]
 offset_left = 1408.0
 offset_top = 256.0
 offset_right = 1448.0
 offset_bottom = 296.0
+
+[node name="Spring" parent="." instance=ExtResource("12_mjp2c")]
+position = Vector2(131, 464)
 
 [connection signal="body_entered" from="fallzone" to="Steve" method="_on_fallzone_body_entered"]
