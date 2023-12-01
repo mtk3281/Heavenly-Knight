@@ -57,9 +57,9 @@ position = Vector2(-2, 3)
 shape = SubResource("CircleShape2D_3k6fq")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-autoplay = "upDown"
 libraries = {
 "": SubResource("AnimationLibrary_18jye")
 }
+autoplay = "upDown"
 
 [connection signal="body_entered" from="Sprite2D/Area2D" to="." method="_on_area_2d_body_entered"]

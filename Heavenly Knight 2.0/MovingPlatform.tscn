@@ -58,7 +58,7 @@ polygon = PackedVector2Array(-104, -28, -110, -26, -113, -21, -114, -16, -114, -
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 root_node = NodePath("../AnimatableBody2D")
-autoplay = "moving"
 libraries = {
 "": SubResource("AnimationLibrary_ixoc3")
 }
+autoplay = "moving"

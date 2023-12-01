@@ -89,8 +89,6 @@ limit_smoothed = true
 position_smoothing_enabled = true
 drag_horizontal_enabled = true
 drag_vertical_enabled = true
-drag_left_margin = 0.3
-drag_right_margin = 0.3
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 0.7
