@@ -1,5 +1,6 @@
-[gd_scene load_steps=15 format=3 uid="uid://ce4kpvpxivq7d"]
+[gd_scene load_steps=18 format=3 uid="uid://ce4kpvpxivq7d"]
 
+[ext_resource type="PackedScene" uid="uid://ckhis5g5mnonw" path="res://spike.tscn" id="1_fg67c"]
 [ext_resource type="PackedScene" uid="uid://bafabnogsjc30" path="res://steve.tscn" id="1_iycjl"]
 [ext_resource type="PackedScene" uid="uid://cocuk7i0or47k" path="res://tileset1.tscn" id="3_2to1c"]
 [ext_resource type="TileSet" uid="uid://bgbl77ks6gxys" path="res://tileset1.tres" id="3_fi4a2"]
@@ -13,11 +14,16 @@
 [ext_resource type="PackedScene" uid="uid://ci4trv02kbmsr" path="res://MovingPlatform.tscn" id="11_jawfk"]
 [ext_resource type="PackedScene" uid="uid://bomta4dxcj3ln" path="res://spring.tscn" id="12_mjp2c"]
 [ext_resource type="PackedScene" uid="uid://b0bxikgtc7bso" path="res://touch_input.tscn" id="13_3bnv8"]
+[ext_resource type="PackedScene" uid="uid://c7u7oston0xow" path="res://fly_enemy.tscn" id="14_43c2d"]
+[ext_resource type="PackedScene" uid="uid://dckpwgydtyofr" path="res://level_complete.tscn" id="16_rgec4"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_j0r6r"]
 size = Vector2(5360, 154)
 
 [node name="level1" type="Node2D"]
+
+[node name="spike" parent="." instance=ExtResource("1_fg67c")]
+position = Vector2(1231, 467)
 
 [node name="TileMap" parent="." instance=ExtResource("3_2to1c")]
 position = Vector2(-951, 1456)
@@ -75,6 +81,9 @@ position = Vector2(644, 426)
 direction = -1
 detect_cliffs = false
 
+[node name="FlyEnemy" parent="Enemies" groups=["Enemies"] instance=ExtResource("14_43c2d")]
+position = Vector2(988, 254)
+
 [node name="Checkpoint" parent="." instance=ExtResource("9_eo5go")]
 position = Vector2(443, 433)
 
@@ -91,5 +100,8 @@ offset_bottom = 296.0
 position = Vector2(131, 464)
 
 [node name="Touch Input" parent="." instance=ExtResource("13_3bnv8")]
+
+[node name="levelComplete" parent="." instance=ExtResource("16_rgec4")]
+position = Vector2(582, 454)
 
 [connection signal="body_entered" from="fallzone" to="Steve" method="_on_fallzone_body_entered"]

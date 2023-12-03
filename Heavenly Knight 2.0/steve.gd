@@ -2,13 +2,13 @@ extends CharacterBody2D
 
 const FIREBALL = preload("fireball.tscn")
 
-@export var SPEED = 400
-@export var RUN_SPEED = 550
+@export var SPEED = 550
+@export var RUN_SPEED = 650
 @export var JUMP_VELOCITY = -800.0
-@export_range(0.0, 1.0) var FRICTION = 0.1
-@export_range(0.0 , 1.0) var ACC = 0.20
-#const ACC = 125
-#const FRICTION = 160
+#@export_range(0.0, 1.0) var FRICTION = 0.5
+#@export_range(0.0 , 1.0) var ACC = 0.4
+const ACC = 250
+const FRICTION = 280
 
 const MAX_JUMP = 2
 
@@ -19,8 +19,15 @@ var dead = false
 var checkpoint
 
 func _ready():
+	Engine.max_fps = DisplayServer.screen_get_refresh_rate()
+	#ProjectSettings.set_setting("physics/common/physics_fps", DisplayServer.screen_get_refresh_rate())
+	Engine.physics_ticks_per_second = DisplayServer.screen_get_refresh_rate()
+
+	#Engine.target_fps = DisplayServer.screen_get_refresh_rate() + 1
+	
 	GlobalVar.player_pos = global_position
 	GlobalVar.life_count = 4
+	
 	GlobalVar.total_coin =len(get_tree().get_nodes_in_group("Coins"))
 	GlobalVar.total_enemy =len(get_tree().get_nodes_in_group("Enemies"))	
 	GlobalVar.coin = 0
@@ -31,12 +38,12 @@ func _physics_process(delta):
 	if $Sprite2D.get_playing_speed() != 1.0:
 		$Sprite2D.set_speed_scale(1.0)
 		
-	# Add the gravity.
+	## Add the gravity.
 	if not is_on_floor():
 		velocity.y += GRAVITY * delta
 	if not is_on_floor():
 		$Sprite2D.play("air")
-
+#
 	#jump implementation
 	if is_on_floor() and jump_count != 0:
 		jump_count = 0
@@ -49,6 +56,7 @@ func _physics_process(delta):
 	
 	var direction = Input.get_axis("left","right")
 	if direction:
+		
 		if is_on_floor():
 			if  not dead:
 				$Sprite2D.play("walk")
@@ -57,17 +65,23 @@ func _physics_process(delta):
 		else:
 			$Sprite2D.flip_h = true
 		if Input.is_action_pressed("run"):
-			velocity.x = lerp(velocity.x, direction * RUN_SPEED, ACC)
+			var target_velocity = Vector2(RUN_SPEED * direction, velocity.y)
+			velocity = velocity.move_toward(target_velocity, ACC)
 			$Sprite2D.set_speed_scale(2.0)
 		else:
-			velocity.x = lerp(velocity.x, direction * SPEED, ACC)
+			var target_velocity = Vector2(SPEED * direction, velocity.y)
+			velocity = velocity.move_toward(target_velocity, ACC)
+			#var target_velocity_x = direction * RUN_SPEED
+			#velocity = velocity.move_toward(target_velocity_x, ACC * delta)
 	else:
 		if not dead:
 			if is_on_floor():
 				$Sprite2D.play("idle")
 			else:
 				$Sprite2D.play("air")
-		velocity.x = lerp(velocity.x, 0.0, FRICTION)
+		#velocity.x = lerp(velocity.x, 0.0, FRICTION)
+		var target_velocity = Vector2(0, velocity.y)
+		velocity = velocity.move_toward(target_velocity, FRICTION)
 	move_and_slide()
 	
 	if Input.is_action_just_pressed("fire"):
@@ -90,8 +104,8 @@ func _on_fallzone_body_entered(body):
 		global_position = GlobalVar.player_pos
 
 #called in enemy script
-func bounce():
-	velocity.y = 0.7 * JUMP_VELOCITY
+func bounce(val=1):
+	velocity.y = 0.7 * JUMP_VELOCITY * val
 	
 func ouch(pos):
 #	dead = true

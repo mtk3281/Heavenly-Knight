@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c0tr05q13vrnj"
-path="res://.godot/imported/platformChar_idle.png-4f992a6acdb9741a64fa64a5c37d3f30.ctex"
+uid="uid://cuq817c4ce4mr"
+path="res://.godot/imported/wingMan3.png-f3bee79f7fe458f9001afb52b3624e20.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/player/platformChar_idle.png"
-dest_files=["res://.godot/imported/platformChar_idle.png-4f992a6acdb9741a64fa64a5c37d3f30.ctex"]
+source_file="res://Assets/enemies/wingMan3.png"
+dest_files=["res://.godot/imported/wingMan3.png-f3bee79f7fe458f9001afb52b3624e20.ctex"]
 
 [params]
 
@@ -21,7 +21,7 @@ compress/lossy_quality=0.7
 compress/hdr_compression=1
 compress/normal_map=0
 compress/channel_pack=0
-mipmaps/generate=true
+mipmaps/generate=false
 mipmaps/limit=-1
 roughness/mode=0
 roughness/src_normal=""

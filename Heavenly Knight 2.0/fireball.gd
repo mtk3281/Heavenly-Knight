@@ -1,6 +1,6 @@
 extends CharacterBody2D
 
-const SPEED = 565
+const SPEED = 700
 var direction = -1
 
 #func _ready():

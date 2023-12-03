@@ -3,34 +3,31 @@
 [ext_resource type="Texture2D" uid="uid://cy6kbp3m3p4y5" path="res://Assets/items/right.png" id="1_lnbfn"]
 [ext_resource type="Texture2D" uid="uid://dm6ds15a55024" path="res://Assets/items/left.png" id="2_w8lmo"]
 [ext_resource type="Texture2D" uid="uid://82evu8i4ogqy" path="res://Assets/items/up.png" id="3_4x1x3"]
-[ext_resource type="Texture2D" uid="uid://xt0msp31gtct" path="res://Assets/items/fire.png" id="4_oysd4"]
+[ext_resource type="Texture2D" uid="uid://0dy67mek5uil" path="res://Assets/items/fire.png" id="4_oysd4"]
 
 [node name="Touch Input" type="CanvasLayer"]
 
 [node name="right" type="TouchScreenButton" parent="."]
-position = Vector2(262, 513)
-scale = Vector2(1.6, 1.6)
+position = Vector2(223, 512)
 texture_normal = ExtResource("1_lnbfn")
 passby_press = true
 action = "right"
 
 [node name="left" type="TouchScreenButton" parent="."]
-position = Vector2(113, 514)
-scale = Vector2(1.6, 1.6)
+position = Vector2(61, 512)
 texture_normal = ExtResource("2_w8lmo")
 passby_press = true
 action = "left"
 
 [node name="up" type="TouchScreenButton" parent="."]
-position = Vector2(1073, 509)
-scale = Vector2(1.6, 1.6)
+position = Vector2(1355, 509)
 texture_normal = ExtResource("3_4x1x3")
 passby_press = true
 action = "jump"
 
 [node name="fire" type="TouchScreenButton" parent="."]
-position = Vector2(917, 511)
-scale = Vector2(1.6, 1.6)
+position = Vector2(1183, 515)
+scale = Vector2(0.898437, 0.96875)
 texture_normal = ExtResource("4_oysd4")
 passby_press = true
 action = "fire"

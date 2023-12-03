@@ -1,6 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://bomta4dxcj3ln"]
+[gd_scene load_steps=7 format=3 uid="uid://bomta4dxcj3ln"]
 
 [ext_resource type="Texture2D" uid="uid://c6x2mctavpkrl" path="res://Assets/items/spring.png" id="1_02ndd"]
+[ext_resource type="Script" path="res://spring.gd" id="1_60jlg"]
 [ext_resource type="Texture2D" uid="uid://c7y2uo4d216o5" path="res://Assets/items/sprung.png" id="2_lmpne"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_q6svm"]
@@ -20,9 +21,18 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4y5gx"]
 size = Vector2(64, 18)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_oej8h"]
+size = Vector2(60, 5)
+
 [node name="Spring" type="Node2D"]
+script = ExtResource("1_60jlg")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+position = Vector2(0.500002, 13.5)
+scale = Vector2(3.15, 2.05)
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
+collision_layer = 2
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="StaticBody2D"]
 sprite_frames = SubResource("SpriteFrames_q6svm")
@@ -31,3 +41,13 @@ animation = &"spring"
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
 position = Vector2(0, 8)
 shape = SubResource("RectangleShape2D_4y5gx")
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(0, -4.5)
+shape = SubResource("RectangleShape2D_oej8h")
+
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
