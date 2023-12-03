@@ -1,0 +1,309 @@
+[gd_scene load_steps=24 format=3 uid="uid://buugj4bf4k1ig"]
+
+[ext_resource type="Script" path="res://how_to_play.gd" id="1_lhtvf"]
+[ext_resource type="FontFile" uid="uid://dh2eg256uhspn" path="res://Assets/ui/Montserrat-ExtraBold.ttf" id="1_villv"]
+[ext_resource type="Texture2D" uid="uid://dwtelkfk4rb70" path="res://Assets/enemies/slimeBlue_squashed.png" id="2_wqg7c"]
+[ext_resource type="Texture2D" uid="uid://ccjii65i6fcdu" path="res://Assets/enemies/slimeBlue_blue.png" id="3_kfvgv"]
+[ext_resource type="Texture2D" uid="uid://cfovh6al0qsk2" path="res://Assets/enemies/slimeBlue.png" id="4_2rr1j"]
+[ext_resource type="Texture2D" uid="uid://cukx6wqclhdct" path="res://Assets/items/flagRed1.png" id="5_u2ooq"]
+[ext_resource type="Texture2D" uid="uid://nv5cbc4ep7y4" path="res://Assets/items/flagRed2.png" id="6_3wqnh"]
+[ext_resource type="Texture2D" uid="uid://bw3edr8q6u677" path="res://Assets/items/flagRed_down.png" id="7_hbvsb"]
+[ext_resource type="PackedScene" uid="uid://cocuk7i0or47k" path="res://tileset1.tscn" id="8_1pb03"]
+[ext_resource type="TileSet" uid="uid://ckivqkuoxougm" path="res://tileset2.tres" id="9_mjm3r"]
+[ext_resource type="TileSet" uid="uid://bgbl77ks6gxys" path="res://tileset1.tres" id="10_iatgk"]
+[ext_resource type="PackedScene" uid="uid://1d83s1ts0qdy" path="res://coin.tscn" id="11_f4hvv"]
+[ext_resource type="PackedScene" uid="uid://behsg1e0cuu2j" path="res://enemy.tscn" id="12_rv2br"]
+[ext_resource type="PackedScene" uid="uid://bc3yabmsst5u2" path="res://moving_background.tscn" id="13_jpd5k"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_v1vnj"]
+bg_color = Color(0.592157, 0.815686, 0.988235, 0.0901961)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_vxb8f"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_wqg7c")
+}],
+"loop": true,
+"name": &"squash",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_kfvgv")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_2rr1j")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 2.0
+}]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_7vyni"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_u2ooq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_3wqnh")
+}],
+"loop": true,
+"name": &"flag",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("7_hbvsb")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}]
+
+[sub_resource type="Animation" id="Animation_bsdhu"]
+resource_name = "Fade_In"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("FadeIn:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0.12549, 0.12549, 0.12549, 0), Color(0.12549, 0.12549, 0.12549, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_j184d"]
+resource_name = "Fade_In_2"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("FadeIn:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0.12549, 0.12549, 0.12549, 0), Color(0.12549, 0.12549, 0.12549, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_q3f33"]
+resource_name = "Fade_In_3"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("FadeIn:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0.12549, 0.12549, 0.12549, 0), Color(0.12549, 0.12549, 0.12549, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_cs8i7"]
+resource_name = "Fade_In_4"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("FadeIn:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0.12549, 0.12549, 0.12549, 0), Color(0.12549, 0.12549, 0.12549, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_u50u7"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("FadeIn:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0.12549, 0.12549, 0.12549, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_tesvd"]
+_data = {
+"Fade_In": SubResource("Animation_bsdhu"),
+"Fade_In_2": SubResource("Animation_j184d"),
+"Fade_In_3": SubResource("Animation_q3f33"),
+"Fade_In_4": SubResource("Animation_cs8i7"),
+"RESET": SubResource("Animation_u50u7")
+}
+
+[node name="HowToPlay" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_lhtvf")
+
+[node name="hbox" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 202.0
+offset_top = 109.0
+offset_right = 1652.0
+offset_bottom = 940.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 80
+metadata/_edit_group_ = true
+
+[node name="Logo" type="Label" parent="hbox"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_colors/font_color = Color(0.239216, 0.576471, 0.870588, 1)
+theme_override_fonts/font = ExtResource("1_villv")
+theme_override_font_sizes/font_size = 80
+theme_override_styles/normal = SubResource("StyleBoxFlat_v1vnj")
+text = "How To Play"
+
+[node name="Label" type="Label" parent="hbox"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 1
+theme_override_colors/font_color = Color(0.435294, 0.54902, 0.839216, 1)
+theme_override_fonts/font = ExtResource("1_villv")
+theme_override_font_sizes/font_size = 40
+text = "Kill all Enimies"
+horizontal_alignment = 1
+
+[node name="Label2" type="Label" parent="hbox"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+theme_override_colors/font_color = Color(0.435294, 0.54902, 0.839216, 1)
+theme_override_fonts/font = ExtResource("1_villv")
+theme_override_font_sizes/font_size = 40
+text = "Collect all Coins and items"
+horizontal_alignment = 1
+
+[node name="Label3" type="Label" parent="hbox"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 1
+theme_override_colors/font_color = Color(0.435294, 0.54902, 0.839216, 1)
+theme_override_fonts/font = ExtResource("1_villv")
+theme_override_font_sizes/font_size = 40
+text = "Find the hidden flag"
+horizontal_alignment = 1
+
+[node name="enemy" type="AnimatedSprite2D" parent="."]
+position = Vector2(631, 332)
+scale = Vector2(1.01316, 1.26471)
+sprite_frames = SubResource("SpriteFrames_vxb8f")
+animation = &"walk"
+autoplay = "walk"
+
+[node name="flag" type="AnimatedSprite2D" parent="."]
+position = Vector2(858, 586)
+scale = Vector2(0.7, 0.7)
+sprite_frames = SubResource("SpriteFrames_7vyni")
+animation = &"flag"
+autoplay = "flag"
+
+[node name="Node2D" type="Node2D" parent="."]
+
+[node name="TileMap" parent="Node2D" instance=ExtResource("8_1pb03")]
+position = Vector2(-951, 1456)
+scale = Vector2(1.00053, 1)
+tile_set = ExtResource("9_mjm3r")
+collision_visibility_mode = 0
+
+[node name="TileMap2" type="TileMap" parent="Node2D"]
+tile_set = ExtResource("10_iatgk")
+format = 2
+layer_0/tile_data = PackedInt32Array(851968, 458754, 8, 851969, 458754, 8, 851970, 458754, 8, 851971, 458754, 8, 851972, 458754, 8, 851973, 458754, 8, 851974, 458754, 8, 851975, 458754, 8, 851976, 458754, 8, 851977, 458754, 8, 851978, 458754, 8, 851979, 458754, 8, 851980, 458754, 8, 851981, 458754, 8, 851982, 458754, 8, 851983, 458754, 8, 851984, 458754, 8, 851985, 458754, 8, 851986, 458754, 8, 851987, 458754, 8, 851988, 458754, 8, 851989, 458754, 8, 851990, 458754, 8, 917504, 524290, 12, 983040, 524290, 12, 1048576, 524290, 12, 1114112, 524290, 12, 917505, 524290, 12, 983041, 524290, 12, 1048577, 524290, 12, 1114113, 524290, 12, 917506, 524290, 12, 983042, 524290, 12, 1048578, 524290, 12, 1114114, 524290, 12, 917507, 524290, 12, 983043, 524290, 12, 1048579, 524290, 12, 1114115, 524290, 12, 917508, 524290, 12, 983044, 524290, 12, 1048580, 524290, 12, 1114116, 524290, 12, 917509, 524290, 12, 983045, 524290, 12, 1048581, 524290, 12, 1114117, 524290, 12, 917510, 524290, 12, 983046, 524290, 12, 1048582, 524290, 12, 1114118, 524290, 12, 917511, 524290, 12, 983047, 524290, 12, 1048583, 524290, 12, 1114119, 524290, 12, 917512, 524290, 12, 983048, 524290, 12, 1048584, 524290, 12, 1114120, 524290, 12, 917513, 524290, 12, 983049, 524290, 12, 1048585, 524290, 12, 1114121, 524290, 12, 917514, 524290, 12, 983050, 524290, 12, 1048586, 524290, 12, 1114122, 524290, 12, 917515, 524290, 12, 983051, 524290, 12, 1048587, 524290, 12, 1114123, 524290, 12, 917516, 524290, 12, 983052, 524290, 12, 1048588, 524290, 12, 1114124, 524290, 12, 917517, 524290, 12, 983053, 524290, 12, 1048589, 524290, 12, 1114125, 524290, 12, 917518, 524290, 12, 983054, 524290, 12, 1048590, 524290, 12, 1114126, 524290, 12, 917519, 524290, 12, 983055, 524290, 12, 1048591, 524290, 12, 1114127, 524290, 12, 917520, 524290, 12, 983056, 524290, 12, 1048592, 524290, 12, 1114128, 524290, 12, 917521, 524290, 12, 983057, 524290, 12, 1048593, 524290, 12, 917522, 524290, 12, 983058, 524290, 12, 1048594, 524290, 12, 917523, 524290, 12, 983059, 524290, 12, 1048595, 524290, 12, 917524, 524290, 12, 983060, 524290, 12, 1048596, 524290, 12, 917525, 524290, 12, 983061, 524290, 12, 1048597, 524290, 12, 917526, 524290, 12, 983062, 524290, 12, 1048598, 524290, 12, -65506, 655362, 12, 30, 655362, 12, 65566, 655362, 12, 131102, 655362, 12, 196638, 655362, 12, 262174, 655362, 12, 327710, 655362, 12, 393246, 655362, 12, 458782, 655362, 12, 524318, 655362, 12, 589854, 655362, 12, 655390, 655362, 12, 720926, 655362, 12, 786462, 655362, 12, 851998, 655362, 12, 917534, 655362, 12, 983070, 655362, 12, 1048606, 655362, 12, -1, 655362, 12, 65535, 655362, 12, 131071, 655362, 12, 196607, 655362, 12, 262143, 655362, 12, 327679, 655362, 12, 393215, 655362, 12, 458751, 655362, 12, 524287, 655362, 12, 589823, 655362, 12, 655359, 655362, 12, 720895, 655362, 12, 786431, 655362, 12, 1048575, 655362, 12, 1114111, 655362, 12, 1179647, 655362, 12, 1114129, 524290, 12, 1114130, 524290, 12, 1114131, 524290, 12, 1114132, 524290, 12, 1114133, 524290, 12, 1114134, 524290, 12, 1114142, 655362, 12, 589843, 524290, 10, 589844, 524290, 8, 327707, 458754, 8, 327708, 458754, 8, 327709, 458754, 8, 262172, 393218, 5, 524314, 65538, 2, 393234, 65538, 2, 393241, 524290, 8, 393238, 524290, 10, 393239, 458754, 8, 393240, 458754, 8)
+
+[node name="Coins" type="Node2D" parent="Node2D"]
+
+[node name="coin2" parent="Node2D/Coins" instance=ExtResource("11_f4hvv")]
+position = Vector2(856, 467)
+
+[node name="Enemies" type="Node2D" parent="Node2D"]
+
+[node name="enemy" parent="Node2D/Enemies" instance=ExtResource("12_rv2br")]
+position = Vector2(877, 767)
+direction = 1
+
+[node name="enemy2" parent="Node2D/Enemies" instance=ExtResource("12_rv2br")]
+position = Vector2(1284, 766)
+direction = 1
+
+[node name="moving_background" parent="Node2D" instance=ExtResource("13_jpd5k")]
+
+[node name="GoBack2" type="Button" parent="."]
+layout_mode = 0
+offset_left = 222.0
+offset_top = 692.0
+offset_right = 439.0
+offset_bottom = 752.0
+flat = true
+
+[node name="Label" type="Label" parent="GoBack2"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_shadow_color = Color(1, 0.6, 0.027451, 1)
+theme_override_constants/shadow_offset_x = 5
+theme_override_constants/shadow_offset_y = 5
+theme_override_fonts/font = ExtResource("1_villv")
+theme_override_font_sizes/font_size = 48
+text = "Go Back
+"
+
+[node name="FadeIn" type="ColorRect" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 1892.0
+offset_bottom = 1042.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.12549, 0.12549, 0.12549, 0)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="FadeIn"]
+root_node = NodePath("../..")
+libraries = {
+"": SubResource("AnimationLibrary_tesvd")
+}
+
+[connection signal="pressed" from="GoBack2" to="." method="_on_go_back_2_pressed"]
+[connection signal="animation_finished" from="FadeIn/AnimationPlayer" to="." method="_on_animation_player_animation_finished"]

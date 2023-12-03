@@ -1,9 +1,9 @@
-[gd_scene load_steps=12 format=3 uid="uid://behsg1e0cuu2j"]
+[gd_scene load_steps=12 format=3 uid="uid://qpll4asigw1i"]
 
-[ext_resource type="Script" path="res://enemy.gd" id="1_gnye3"]
-[ext_resource type="Texture2D" uid="uid://dwtelkfk4rb70" path="res://Assets/enemies/slimeBlue_squashed.png" id="2_ovd1n"]
-[ext_resource type="Texture2D" uid="uid://ccjii65i6fcdu" path="res://Assets/enemies/slimeBlue_blue.png" id="3_h2lrq"]
-[ext_resource type="Texture2D" uid="uid://cfovh6al0qsk2" path="res://Assets/enemies/slimeBlue.png" id="4_21iab"]
+[ext_resource type="Script" path="res://SpeedEnemy.gd" id="1_b0gl6"]
+[ext_resource type="Texture2D" uid="uid://dwtelkfk4rb70" path="res://Assets/enemies/slimeBlue_squashed.png" id="2_xufbs"]
+[ext_resource type="Texture2D" uid="uid://ccjii65i6fcdu" path="res://Assets/enemies/slimeBlue_blue.png" id="3_ncaa5"]
+[ext_resource type="Texture2D" uid="uid://cfovh6al0qsk2" path="res://Assets/enemies/slimeBlue.png" id="4_4icgi"]
 
 [sub_resource type="Animation" id="Animation_hblev"]
 length = 0.001
@@ -107,7 +107,7 @@ _data = {
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("2_ovd1n")
+"texture": ExtResource("2_xufbs")
 }],
 "loop": true,
 "name": &"squash",
@@ -115,14 +115,14 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("3_h2lrq")
+"texture": ExtResource("3_ncaa5")
 }, {
 "duration": 1.0,
-"texture": ExtResource("4_21iab")
+"texture": ExtResource("4_4icgi")
 }],
 "loop": true,
 "name": &"walk",
-"speed": 2.0
+"speed": 3.0
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_62pnm"]
@@ -134,11 +134,11 @@ size = Vector2(47, 5)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8vsir"]
 size = Vector2(55, 24)
 
-[node name="enemy" type="CharacterBody2D"]
+[node name="SpeedEnemy" type="CharacterBody2D"]
+modulate = Color(0.12549, 0.615686, 0.717647, 1)
 collision_layer = 8
 collision_mask = 51
-script = ExtResource("1_gnye3")
-SPEED = 90.0
+script = ExtResource("1_b0gl6")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 reset_on_save = false
@@ -178,6 +178,16 @@ shape = SubResource("RectangleShape2D_8vsir")
 [node name="Timer" type="Timer" parent="."]
 wait_time = 0.25
 one_shot = true
+
+[node name="RayCast2D" type="RayCast2D" parent="."]
+position = Vector2(0, 16)
+target_position = Vector2(40, 0)
+collision_mask = 2
+
+[node name="RayCast2D2" type="RayCast2D" parent="."]
+position = Vector2(0, 16)
+target_position = Vector2(-40, 0)
+collision_mask = 2
 
 [connection signal="body_entered" from="top" to="." method="_on_top_body_entered"]
 [connection signal="body_entered" from="side" to="." method="_on_side_body_entered"]

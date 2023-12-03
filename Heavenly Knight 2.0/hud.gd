@@ -47,4 +47,4 @@ func _on_timer_timeout():
 
 func _on_lifecount_changed(new_lifecount):
 	var tween1 = get_tree().create_tween()
-	tween1.tween_property(health,"value",new_lifecount*25,1).set_trans(Tween.TRANS_LINEAR)
+	tween1.tween_property(health,"value",new_lifecount*25,2).set_trans(Tween.TRANS_LINEAR)

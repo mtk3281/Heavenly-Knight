@@ -59,21 +59,22 @@ animations = [{
 script = ExtResource("1_fr2sc")
 
 [node name="Label2" type="Label" parent="."]
-offset_left = 1263.0
-offset_top = 48.0
-offset_right = 1334.0
-offset_bottom = 114.0
+offset_left = 1430.0
+offset_top = 49.0
+offset_right = 1501.0
+offset_bottom = 115.0
 theme_override_colors/font_color = Color(1, 0.270588, 0.294118, 1)
 theme_override_fonts/font = ExtResource("2_whf5p")
-theme_override_font_sizes/font_size = 29
+theme_override_font_sizes/font_size = 45
 text = "HP"
 uppercase = true
 
 [node name="Health" type="HBoxContainer" parent="."]
-offset_left = 1318.0
+offset_left = 1512.0
 offset_top = 49.0
-offset_right = 1529.0
+offset_right = 1723.0
 offset_bottom = 123.0
+scale = Vector2(1.4, 1.4)
 alignment = 1
 
 [node name="ProgressBar" type="ProgressBar" parent="Health"]
@@ -87,18 +88,20 @@ theme_override_styles/fill = ExtResource("5_cj8pj")
 rounded = true
 
 [node name="CoinImg" type="TextureRect" parent="."]
-offset_left = 36.0
-offset_top = 48.0
-offset_right = 78.0
-offset_bottom = 91.0
+offset_left = 39.0
+offset_top = 49.0
+offset_right = 81.0
+offset_bottom = 92.0
+scale = Vector2(1.4, 1.4)
 texture = ExtResource("3_ba6wb")
 expand_mode = 1
 
 [node name="Coin" type="HBoxContainer" parent="."]
-offset_left = 85.0
-offset_top = 48.0
-offset_right = 296.0
-offset_bottom = 90.0
+offset_left = 129.0
+offset_top = 49.0
+offset_right = 340.0
+offset_bottom = 91.0
+scale = Vector2(1.4, 1.4)
 
 [node name="ProgressBar" type="ProgressBar" parent="Coin"]
 custom_minimum_size = Vector2(0, 35)
@@ -112,10 +115,11 @@ step = 0.0
 rounded = true
 
 [node name="Enemy" type="HBoxContainer" parent="."]
-offset_left = 87.0
-offset_top = 107.0
-offset_right = 298.0
-offset_bottom = 149.0
+offset_left = 129.0
+offset_top = 135.0
+offset_right = 340.0
+offset_bottom = 177.0
+scale = Vector2(1.4, 1.4)
 
 [node name="ProgressBar" type="ProgressBar" parent="Enemy"]
 custom_minimum_size = Vector2(0, 35)
@@ -129,7 +133,8 @@ step = 0.0
 rounded = true
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-position = Vector2(52, 128)
+position = Vector2(66, 168)
+scale = Vector2(1.5, 1.5)
 sprite_frames = SubResource("SpriteFrames_7qw60")
 animation = &"enemy"
 autoplay = "enemy"
@@ -139,13 +144,13 @@ wait_time = 0.4
 autostart = true
 
 [node name="fps" type="Label" parent="."]
-offset_left = 1376.0
-offset_top = 105.0
-offset_right = 1427.0
-offset_bottom = 135.0
+offset_left = 1609.0
+offset_top = 126.0
+offset_right = 1681.0
+offset_bottom = 168.0
 theme_override_colors/font_color = Color(1, 0, 0, 1)
 theme_override_fonts/font = ExtResource("2_whf5p")
-theme_override_font_sizes/font_size = 24
+theme_override_font_sizes/font_size = 34
 text = "FPS "
 uppercase = true
 

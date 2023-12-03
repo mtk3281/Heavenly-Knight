@@ -1,0 +1,282 @@
+[gd_scene load_steps=20 format=3 uid="uid://y4gxvismf8u1"]
+
+[ext_resource type="Script" path="res://how_to_play.gd" id="1_22xhk"]
+[ext_resource type="FontFile" uid="uid://dh2eg256uhspn" path="res://Assets/ui/Montserrat-ExtraBold.ttf" id="2_upe3k"]
+[ext_resource type="PackedScene" uid="uid://cocuk7i0or47k" path="res://tileset1.tscn" id="9_13m3t"]
+[ext_resource type="Texture2D" uid="uid://dm6ds15a55024" path="res://Assets/items/left.png" id="9_xvcxp"]
+[ext_resource type="TileSet" uid="uid://ckivqkuoxougm" path="res://tileset2.tres" id="10_d7p2t"]
+[ext_resource type="Texture2D" uid="uid://cy6kbp3m3p4y5" path="res://Assets/items/right.png" id="10_kk0ex"]
+[ext_resource type="Texture2D" uid="uid://82evu8i4ogqy" path="res://Assets/items/up.png" id="11_eu0qq"]
+[ext_resource type="TileSet" uid="uid://bgbl77ks6gxys" path="res://tileset1.tres" id="11_ncome"]
+[ext_resource type="PackedScene" uid="uid://1d83s1ts0qdy" path="res://coin.tscn" id="12_aofdu"]
+[ext_resource type="Texture2D" uid="uid://0dy67mek5uil" path="res://Assets/items/fire.png" id="12_jiuud"]
+[ext_resource type="PackedScene" uid="uid://behsg1e0cuu2j" path="res://enemy.tscn" id="13_xpcqo"]
+[ext_resource type="PackedScene" uid="uid://bc3yabmsst5u2" path="res://moving_background.tscn" id="14_pqi88"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_v1vnj"]
+bg_color = Color(0.592157, 0.815686, 0.988235, 0.0901961)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+
+[sub_resource type="Animation" id="Animation_bsdhu"]
+resource_name = "Fade_In"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("FadeIn:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0.12549, 0.12549, 0.12549, 0), Color(0.12549, 0.12549, 0.12549, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_j184d"]
+resource_name = "Fade_In_2"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("FadeIn:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0.12549, 0.12549, 0.12549, 0), Color(0.12549, 0.12549, 0.12549, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_q3f33"]
+resource_name = "Fade_In_3"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("FadeIn:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0.12549, 0.12549, 0.12549, 0), Color(0.12549, 0.12549, 0.12549, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_cs8i7"]
+resource_name = "Fade_In_4"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("FadeIn:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0.12549, 0.12549, 0.12549, 0), Color(0.12549, 0.12549, 0.12549, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_u50u7"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("FadeIn:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0.12549, 0.12549, 0.12549, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_tesvd"]
+_data = {
+"Fade_In": SubResource("Animation_bsdhu"),
+"Fade_In_2": SubResource("Animation_j184d"),
+"Fade_In_3": SubResource("Animation_q3f33"),
+"Fade_In_4": SubResource("Animation_cs8i7"),
+"RESET": SubResource("Animation_u50u7")
+}
+
+[node name="Controls" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_22xhk")
+
+[node name="hbox" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 202.0
+offset_top = 109.0
+offset_right = 1652.0
+offset_bottom = 940.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 80
+metadata/_edit_group_ = true
+
+[node name="Logo" type="Label" parent="hbox"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_colors/font_color = Color(0.239216, 0.576471, 0.870588, 1)
+theme_override_fonts/font = ExtResource("2_upe3k")
+theme_override_font_sizes/font_size = 80
+theme_override_styles/normal = SubResource("StyleBoxFlat_v1vnj")
+text = "Controls
+"
+
+[node name="Label" type="Label" parent="hbox"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 1
+theme_override_colors/font_color = Color(0.435294, 0.54902, 0.839216, 1)
+theme_override_fonts/font = ExtResource("2_upe3k")
+theme_override_font_sizes/font_size = 40
+text = "Movements "
+horizontal_alignment = 1
+
+[node name="Label2" type="Label" parent="hbox"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+theme_override_colors/font_color = Color(0.435294, 0.54902, 0.839216, 1)
+theme_override_fonts/font = ExtResource("2_upe3k")
+theme_override_font_sizes/font_size = 40
+text = "Jump"
+horizontal_alignment = 1
+
+[node name="Label3" type="Label" parent="hbox"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 1
+theme_override_colors/font_color = Color(0.435294, 0.54902, 0.839216, 1)
+theme_override_fonts/font = ExtResource("2_upe3k")
+theme_override_font_sizes/font_size = 40
+text = "Fire
+"
+horizontal_alignment = 1
+
+[node name="Node2D" type="Node2D" parent="."]
+
+[node name="TileMap" parent="Node2D" instance=ExtResource("9_13m3t")]
+position = Vector2(-951, 1456)
+scale = Vector2(1.00053, 1)
+tile_set = ExtResource("10_d7p2t")
+collision_visibility_mode = 0
+
+[node name="TileMap2" type="TileMap" parent="Node2D"]
+tile_set = ExtResource("11_ncome")
+format = 2
+layer_0/tile_data = PackedInt32Array(851968, 65538, 6, 851969, 65538, 6, 851970, 65538, 6, 851971, 65538, 6, 851972, 65538, 6, 851973, 65538, 6, 851974, 65538, 6, 851975, 65538, 6, 851976, 65538, 6, 851977, 65538, 6, 851978, 65538, 6, 851979, 65538, 6, 851980, 65538, 6, 851981, 65538, 6, 851982, 65538, 6, 851983, 65538, 6, 851984, 65538, 6, 851985, 65538, 6, 851986, 65538, 6, 851987, 65538, 6, 851989, 65538, 6, 851990, 65538, 6, 917504, 131074, 8, 983040, 131074, 8, 1048576, 131074, 8, 1114112, 131074, 8, 917505, 131074, 8, 983041, 131074, 8, 1048577, 131074, 8, 1114113, 131074, 8, 917506, 131074, 8, 983042, 131074, 8, 1048578, 131074, 8, 1114114, 131074, 8, 917507, 131074, 8, 983043, 131074, 8, 1048579, 131074, 8, 1114115, 131074, 8, 917508, 131074, 8, 983044, 131074, 8, 1048580, 131074, 8, 1114116, 131074, 8, 917509, 131074, 8, 983045, 131074, 8, 1048581, 131074, 8, 1114117, 131074, 8, 917510, 131074, 8, 983046, 131074, 8, 1048582, 131074, 8, 1114118, 131074, 8, 917511, 131074, 8, 983047, 131074, 8, 1048583, 131074, 8, 1114119, 131074, 8, 917512, 131074, 8, 983048, 131074, 8, 1048584, 131074, 8, 1114120, 131074, 8, 917513, 131074, 8, 983049, 131074, 8, 1048585, 131074, 8, 1114121, 131074, 8, 917514, 131074, 8, 983050, 131074, 8, 1048586, 131074, 8, 1114122, 131074, 8, 917515, 131074, 8, 983051, 131074, 8, 1048587, 131074, 8, 1114123, 131074, 8, 917516, 131074, 8, 983052, 131074, 8, 1048588, 131074, 8, 1114124, 131074, 8, 917517, 131074, 8, 983053, 131074, 8, 1048589, 131074, 8, 1114125, 131074, 8, 917518, 131074, 8, 983054, 131074, 8, 1048590, 131074, 8, 1114126, 131074, 8, 917519, 131074, 8, 983055, 131074, 8, 1048591, 131074, 8, 1114127, 131074, 8, 917520, 131074, 8, 983056, 131074, 8, 1048592, 131074, 8, 1114128, 131074, 8, 917521, 131074, 8, 983057, 131074, 8, 1048593, 131074, 8, 917522, 131074, 8, 983058, 131074, 8, 1048594, 131074, 8, 917523, 131074, 8, 983059, 131074, 8, 1048595, 131074, 8, 917524, 131074, 8, 983060, 131074, 8, 1048596, 131074, 8, 917525, 131074, 8, 983061, 131074, 8, 1048597, 131074, 8, 917526, 131074, 8, 983062, 131074, 8, 1048598, 131074, 8, -65506, 131074, 8, 30, 131074, 8, 65566, 131074, 8, 131102, 131074, 8, 196638, 131074, 8, 262174, 131074, 8, 327710, 131074, 8, 393246, 131074, 8, 458782, 131074, 8, 524318, 131074, 8, 589854, 131074, 8, 655390, 131074, 8, 720926, 131074, 8, 786462, 131074, 8, 851998, 131074, 8, 917534, 131074, 8, 983070, 131074, 8, 1048606, 131074, 8, -1, 131074, 8, 65535, 131074, 8, 131071, 131074, 8, 196607, 131074, 8, 262143, 131074, 8, 327679, 131074, 8, 393215, 131074, 8, 458751, 131074, 8, 524287, 131074, 8, 589823, 131074, 8, 655359, 131074, 8, 720895, 131074, 8, 786431, 131074, 8, 983039, 131074, 8, 1048575, 131074, 8, 1114111, 131074, 8, 1179647, 131074, 8, 1114129, 131074, 8, 1114130, 131074, 8, 1114131, 131074, 8, 1114132, 131074, 8, 1114133, 131074, 8, 1114134, 131074, 8, 1114142, 131074, 8, 589843, 196610, 9, 589844, 196610, 9, 458775, 196610, 9, 458774, 196610, 9, 327707, 196610, 9, 327708, 196610, 9, 327709, 196610, 9, 262172, 393218, 5, 327705, 393218, 6, 524314, 65538, 2, 393234, 65538, 2, 851991, 393218, 9, 917527, 458754, 3, 983063, 458754, 3, 1048599, 458754, 3, 1114135, 458754, 3, 851992, 393218, 9, 917528, 458754, 3, 983064, 458754, 3, 1048600, 458754, 3, 1114136, 458754, 3, 851993, 393218, 9, 917529, 458754, 3, 983065, 458754, 3, 1048601, 458754, 3, 1114137, 458754, 3, 851994, 393218, 9, 917530, 458754, 3, 983066, 458754, 3, 1048602, 458754, 3, 1114138, 458754, 3, 851995, 393218, 9, 917531, 458754, 3, 983067, 458754, 3, 1048603, 458754, 3, 1114139, 458754, 3, 851996, 393218, 9, 917532, 458754, 3, 983068, 458754, 3, 1048604, 458754, 3, 1114140, 458754, 3, 851997, 393218, 9, 917533, 458754, 3, 983069, 458754, 3, 1048605, 458754, 3, 1114141, 458754, 3, 851988, 65538, 6, 524308, 65538, 8, 393238, 393218, 6)
+
+[node name="Coins" type="Node2D" parent="Node2D"]
+
+[node name="coin2" parent="Node2D/Coins" instance=ExtResource("12_aofdu")]
+position = Vector2(856, 467)
+
+[node name="Enemies" type="Node2D" parent="Node2D"]
+
+[node name="enemy" parent="Node2D/Enemies" instance=ExtResource("13_xpcqo")]
+position = Vector2(877, 767)
+direction = 1
+
+[node name="enemy2" parent="Node2D/Enemies" instance=ExtResource("13_xpcqo")]
+position = Vector2(1284, 766)
+direction = 1
+
+[node name="moving_background" parent="Node2D" instance=ExtResource("14_pqi88")]
+
+[node name="GoBack2" type="Button" parent="."]
+layout_mode = 0
+offset_left = 219.0
+offset_top = 691.0
+offset_right = 431.0
+offset_bottom = 751.0
+flat = true
+
+[node name="Label" type="Label" parent="GoBack2"]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -218.0
+offset_top = -28.0
+offset_right = -5.0
+offset_bottom = 32.0
+grow_horizontal = 0
+grow_vertical = 2
+theme_override_colors/font_shadow_color = Color(1, 0.6, 0.027451, 1)
+theme_override_constants/shadow_offset_x = 5
+theme_override_constants/shadow_offset_y = 5
+theme_override_fonts/font = ExtResource("2_upe3k")
+theme_override_font_sizes/font_size = 48
+text = "Go Back
+"
+
+[node name="Images" type="Control" parent="."]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Sprite2D" type="Sprite2D" parent="Images"]
+position = Vector2(540, 345)
+scale = Vector2(0.6, 0.6)
+texture = ExtResource("9_xvcxp")
+
+[node name="Sprite2D2" type="Sprite2D" parent="Images"]
+position = Vector2(644, 343)
+scale = Vector2(0.6, 0.6)
+texture = ExtResource("10_kk0ex")
+
+[node name="Sprite2D3" type="Sprite2D" parent="Images"]
+position = Vector2(535, 474)
+scale = Vector2(0.6, 0.6)
+texture = ExtResource("11_eu0qq")
+
+[node name="Sprite2D4" type="Sprite2D" parent="Images"]
+position = Vector2(531, 597)
+scale = Vector2(0.8, 0.8)
+texture = ExtResource("12_jiuud")
+
+[node name="FadeIn" type="ColorRect" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 1892.0
+offset_bottom = 1042.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.12549, 0.12549, 0.12549, 0)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="FadeIn"]
+root_node = NodePath("../..")
+libraries = {
+"": SubResource("AnimationLibrary_tesvd")
+}
+
+[connection signal="pressed" from="GoBack2" to="." method="_on_go_back_2_pressed"]
+[connection signal="animation_finished" from="FadeIn/AnimationPlayer" to="." method="_on_animation_player_animation_finished"]

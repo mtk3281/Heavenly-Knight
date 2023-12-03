@@ -22,12 +22,8 @@ func _ready():
 	Engine.max_fps = DisplayServer.screen_get_refresh_rate()
 	#ProjectSettings.set_setting("physics/common/physics_fps", DisplayServer.screen_get_refresh_rate())
 	Engine.physics_ticks_per_second = DisplayServer.screen_get_refresh_rate()
-
 	#Engine.target_fps = DisplayServer.screen_get_refresh_rate() + 1
-	
 	GlobalVar.player_pos = global_position
-	GlobalVar.life_count = 4
-	
 	GlobalVar.total_coin =len(get_tree().get_nodes_in_group("Coins"))
 	GlobalVar.total_enemy =len(get_tree().get_nodes_in_group("Enemies"))	
 	GlobalVar.coin = 0

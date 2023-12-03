@@ -13,9 +13,10 @@ func _ready():
 	$AnimatedSprite2D.play("fly")
 
 func _physics_process(delta):
-	if $RayCast2D.is_colliding():
+	if $RayCast2D.is_colliding() or $RayCast2D2.is_colliding():
 		direction = direction * -1
-		$RayCast2D.target_position = $RayCast2D.target_position * -1
+		#$RayCast2D.target_position = $RayCast2D.target_position * direction
+
 	velocity.y += gravity
 	velocity.x = direction * SPEED
 	
