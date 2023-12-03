@@ -4,7 +4,7 @@ extends CharacterBody2D
 @export var SPEED = 80
 var ACC = 10
 @onready var gravity = 0
-var direction = 1
+@export var direction = 1
 
 var chase = false
 var player = null
