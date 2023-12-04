@@ -47,6 +47,7 @@ func maskoff():
 	set_collision_mask_value(1,false)
 
 func _on_side_body_entered(body):
+	print(body.name)
 	if body.name == "Steve":
 		SPEED = 0
 		maskoff()
@@ -64,3 +65,4 @@ func die():
 func _on_timer_timeout():
 	GlobalVar.enemy_dead_count += 1
 	queue_free()
+

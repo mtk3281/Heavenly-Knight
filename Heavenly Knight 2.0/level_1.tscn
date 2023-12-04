@@ -69,7 +69,6 @@ position = Vector2(2796, 636)
 direction = 1
 
 [node name="Touch Input" parent="." instance=ExtResource("13_3bnv8")]
-visible = false
 
 [node name="levelComplete" parent="." instance=ExtResource("16_rgec4")]
 position = Vector2(4667, 328)

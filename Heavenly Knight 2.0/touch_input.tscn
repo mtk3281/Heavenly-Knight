@@ -29,8 +29,8 @@ passby_press = true
 action = "jump"
 
 [node name="fire" type="TouchScreenButton" parent="."]
-position = Vector2(1291, 752)
-scale = Vector2(2, 2)
+position = Vector2(1311, 772)
+scale = Vector2(1.7, 1.7)
 texture_normal = ExtResource("4_oysd4")
 passby_press = true
 action = "fire"
