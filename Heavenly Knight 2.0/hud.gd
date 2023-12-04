@@ -3,26 +3,23 @@ var style = {"g":load("res://lifebar styles/green.tres"),"b":load("res://lifebar
 var color = {"g":Color('00a83a'),"b":Color("248dff"),"r":Color("ff454b")}
 
 var f = false
-@onready var tween = get_tree().create_tween()
 
+@onready var tween = get_tree().create_tween()
 @onready var health = $Health/ProgressBar
 
 
 func _ready():
-
+	var life = GlobalVar.life_count
 	GlobalVar.connect("lifecount_changed", Callable(self, "_on_lifecount_changed"))
-	tween.tween_property(health,"value",GlobalVar.life_count*25,2).set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_LINEAR)
+	tween.tween_property(health,"value",life * 25,2).set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_LINEAR)
 	
 	
 func _physics_process(_delta):
-
+	
 	$fps.text = "FPS "+ str(Engine.get_frames_per_second())
-	
-	$Coin/ProgressBar.set_value_no_signal(GlobalVar.coin)
 	$Coin/ProgressBar.max_value = GlobalVar.total_coin
-	
 	$Enemy/ProgressBar.max_value = GlobalVar.total_enemy
-	
+	$Coin/ProgressBar.set_value_no_signal(GlobalVar.coin)
 	$Enemy/ProgressBar.set_value_no_signal(GlobalVar.enemy_dead_count)
 	
 	if GlobalVar.life_count != 1:
@@ -46,5 +43,6 @@ func _on_timer_timeout():
 		$Health/ProgressBar.add_theme_stylebox_override("fill", style["f"])
 
 func _on_lifecount_changed(new_lifecount):
+	var life = new_lifecount * 25
 	var tween1 = get_tree().create_tween()
-	tween1.tween_property(health,"value",new_lifecount*25,2).set_trans(Tween.TRANS_LINEAR)
+	tween1.tween_property(health,"value",life,2).set_trans(Tween.TRANS_LINEAR)

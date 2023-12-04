@@ -1,9 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://dckpwgydtyofr"]
+[gd_scene load_steps=10 format=3 uid="uid://dckpwgydtyofr"]
 
 [ext_resource type="Texture2D" uid="uid://bw3edr8q6u677" path="res://Assets/items/flagRed_down.png" id="1_8gusm"]
 [ext_resource type="Script" path="res://level_complete.gd" id="1_biwmi"]
 [ext_resource type="Texture2D" uid="uid://nv5cbc4ep7y4" path="res://Assets/items/flagRed2.png" id="2_ywsa4"]
 [ext_resource type="Texture2D" uid="uid://cukx6wqclhdct" path="res://Assets/items/flagRed1.png" id="3_4ujlk"]
+[ext_resource type="FontFile" uid="uid://dh2eg256uhspn" path="res://Assets/ui/Montserrat-ExtraBold.ttf" id="5_bss7a"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_wis5k"]
 animations = [{
@@ -30,6 +31,36 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_x707s"]
 size = Vector2(20, 90)
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vsfuy"]
+bg_color = Color(0.984314, 0.858824, 0.909804, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+corner_radius_top_left = 22
+corner_radius_top_right = 22
+corner_radius_bottom_right = 22
+corner_radius_bottom_left = 22
+expand_margin_left = 8.0
+expand_margin_top = 8.0
+expand_margin_right = 8.0
+expand_margin_bottom = 8.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gky7f"]
+bg_color = Color(0.745098, 0.843137, 0.996078, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+corner_radius_top_left = 22
+corner_radius_top_right = 22
+corner_radius_bottom_right = 22
+corner_radius_bottom_left = 22
+expand_margin_left = 8.0
+expand_margin_top = 8.0
+expand_margin_right = 8.0
+expand_margin_bottom = 8.0
+
 [node name="levelComplete" type="Node2D"]
 script = ExtResource("1_biwmi")
 
@@ -37,7 +68,7 @@ script = ExtResource("1_biwmi")
 position = Vector2(42, 0)
 scale = Vector2(0.7, 0.7)
 sprite_frames = SubResource("SpriteFrames_wis5k")
-animation = &"idle"
+animation = &"flag"
 autoplay = "idle"
 
 [node name="Area2D" type="Area2D" parent="."]
@@ -46,4 +77,41 @@ autoplay = "idle"
 position = Vector2(5, 1)
 shape = SubResource("RectangleShape2D_x707s")
 
+[node name="Timer" type="Timer" parent="."]
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="CoinLabel" type="Label" parent="Control"]
+visible = false
+layout_mode = 0
+offset_left = -138.0
+offset_top = -104.0
+offset_right = 164.0
+offset_bottom = -68.0
+theme_override_colors/font_color = Color(1, 0.447059, 0.172549, 1)
+theme_override_fonts/font = ExtResource("5_bss7a")
+theme_override_font_sizes/font_size = 28
+theme_override_styles/normal = SubResource("StyleBoxFlat_vsfuy")
+text = "COLLECT ALL COINS"
+
+[node name="EnemyLabel" type="Label" parent="Control"]
+visible = false
+layout_mode = 0
+offset_left = -138.0
+offset_top = -104.0
+offset_right = -98.0
+offset_bottom = -81.0
+theme_override_colors/font_color = Color(0.32549, 0.529412, 1, 1)
+theme_override_fonts/font = ExtResource("5_bss7a")
+theme_override_font_sizes/font_size = 28
+theme_override_styles/normal = SubResource("StyleBoxFlat_gky7f")
+text = "KILL ALL ENEMIES"
+
+[connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

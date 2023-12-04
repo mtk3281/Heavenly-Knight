@@ -5,8 +5,7 @@ const FIREBALL = preload("fireball.tscn")
 @export var SPEED = 550
 @export var RUN_SPEED = 650
 @export var JUMP_VELOCITY = -800.0
-#@export_range(0.0, 1.0) var FRICTION = 0.5
-#@export_range(0.0 , 1.0) var ACC = 0.4
+
 const ACC = 250
 const FRICTION = 280
 
@@ -19,17 +18,13 @@ var dead = false
 var checkpoint
 
 func _ready():
-	Engine.max_fps = DisplayServer.screen_get_refresh_rate()
-	#ProjectSettings.set_setting("physics/common/physics_fps", DisplayServer.screen_get_refresh_rate())
-	Engine.physics_ticks_per_second = DisplayServer.screen_get_refresh_rate()
-	#Engine.target_fps = DisplayServer.screen_get_refresh_rate() + 1
 	GlobalVar.player_pos = global_position
 	GlobalVar.total_coin =len(get_tree().get_nodes_in_group("Coins"))
 	GlobalVar.total_enemy =len(get_tree().get_nodes_in_group("Enemies"))	
 	GlobalVar.coin = 0
-	
-	
-	
+	GlobalVar.enemy_dead_count = 0
+
+
 func _physics_process(delta):
 	if $Sprite2D.get_playing_speed() != 1.0:
 		$Sprite2D.set_speed_scale(1.0)
@@ -67,15 +62,12 @@ func _physics_process(delta):
 		else:
 			var target_velocity = Vector2(SPEED * direction, velocity.y)
 			velocity = velocity.move_toward(target_velocity, ACC)
-			#var target_velocity_x = direction * RUN_SPEED
-			#velocity = velocity.move_toward(target_velocity_x, ACC * delta)
 	else:
 		if not dead:
 			if is_on_floor():
 				$Sprite2D.play("idle")
 			else:
 				$Sprite2D.play("air")
-		#velocity.x = lerp(velocity.x, 0.0, FRICTION)
 		var target_velocity = Vector2(0, velocity.y)
 		velocity = velocity.move_toward(target_velocity, FRICTION)
 	move_and_slide()
@@ -90,14 +82,17 @@ func _physics_process(delta):
 
 		FireInst.direction = dir
 		get_parent().add_child(FireInst)
-		
-
 
 
 func _on_fallzone_body_entered(body):
 	if body.name == "Steve":
 		GlobalVar.life_count -= 1
 		global_position = GlobalVar.player_pos
+		if GlobalVar.life_count ==0:
+			Input.action_release("left")
+			Input.action_release("right")
+			Input.action_release("jump")
+			$Timer.start()
 
 #called in enemy script
 func bounce(val=1):
@@ -115,12 +110,6 @@ func ouch(pos):
 		Input.action_release("jump")
 		$Timer.start()
 
-#	if position.x < pos:
-#		velocity.x = -200
-#	elif position.x > pos:
-#		velocity.x = 200
-#
-
 	if is_on_floor():
 		global_position = GlobalVar.player_pos
 		if $Sprite2D.flip_h:
@@ -128,5 +117,5 @@ func ouch(pos):
 	
 	
 func _on_timer_timeout():
-	get_tree().change_scene_to_file("res://level_1.tscn")
-	
+	GlobalVar.reset()
+	get_tree().change_scene_to_file("res://level_"+str(GlobalVar.level)+".tscn")

@@ -8,26 +8,29 @@
 [node name="Touch Input" type="CanvasLayer"]
 
 [node name="right" type="TouchScreenButton" parent="."]
-position = Vector2(223, 512)
+position = Vector2(397, 766)
+scale = Vector2(1.5, 1.5)
 texture_normal = ExtResource("1_lnbfn")
 passby_press = true
 action = "right"
 
 [node name="left" type="TouchScreenButton" parent="."]
-position = Vector2(61, 512)
+position = Vector2(142, 765)
+scale = Vector2(1.5, 1.5)
 texture_normal = ExtResource("2_w8lmo")
 passby_press = true
 action = "left"
 
 [node name="up" type="TouchScreenButton" parent="."]
-position = Vector2(1355, 509)
+position = Vector2(1590, 775)
+scale = Vector2(1.5, 1.5)
 texture_normal = ExtResource("3_4x1x3")
 passby_press = true
 action = "jump"
 
 [node name="fire" type="TouchScreenButton" parent="."]
-position = Vector2(1183, 515)
-scale = Vector2(0.898437, 0.96875)
+position = Vector2(1291, 752)
+scale = Vector2(2, 2)
 texture_normal = ExtResource("4_oysd4")
 passby_press = true
 action = "fire"

@@ -15,14 +15,12 @@ func _ready():
 func _physics_process(delta):
 	if $RayCast2D.is_colliding() or $RayCast2D2.is_colliding():
 		direction = direction * -1
-		#$RayCast2D.target_position = $RayCast2D.target_position * direction
 
 	velocity.y += gravity
 	velocity.x = direction * SPEED
 	
 	if chase:
 		SPEED = 160
-		#position += (player.position - position)/SPEED
 		velocity = position.direction_to(player.position) * SPEED
 	
 	move_and_slide()

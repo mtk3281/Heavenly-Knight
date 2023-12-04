@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://c6mfkfdh3cout"]
+[gd_scene load_steps=17 format=3 uid="uid://c6mfkfdh3cout"]
 
 [ext_resource type="PackedScene" uid="uid://cocuk7i0or47k" path="res://tileset1.tscn" id="1_o0oxm"]
 [ext_resource type="TileSet" uid="uid://ckivqkuoxougm" path="res://tileset2.tres" id="2_ycmh0"]
@@ -16,6 +16,9 @@
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_j0r6r"]
 size = Vector2(2906.25, 154)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2m5km"]
+size = Vector2(4933, 57.5)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_i0w0f"]
 size = Vector2(2110, 307)
@@ -55,6 +58,12 @@ position = Vector2(4691.5, 1329)
 scale = Vector2(4, 2)
 shape = SubResource("RectangleShape2D_j0r6r")
 
+[node name="fallzone3" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="fallzone3"]
+position = Vector2(2115.5, -651.75)
+shape = SubResource("RectangleShape2D_2m5km")
+
 [node name="fallzone2" type="Area2D" parent="."]
 position = Vector2(-261, -2903)
 
@@ -83,7 +92,7 @@ position = Vector2(4841, -1839)
 position = Vector2(4871, -369)
 
 [node name="coin6" parent="Coins" groups=["Coins"] instance=ExtResource("8_8j5k7")]
-position = Vector2(3629, -453)
+position = Vector2(3645, -345)
 
 [node name="coin7" parent="Coins" groups=["Coins"] instance=ExtResource("8_8j5k7")]
 position = Vector2(1039, 143)
@@ -143,4 +152,5 @@ position = Vector2(3754, -1919)
 position = Vector2(1079, -2621)
 
 [connection signal="body_entered" from="fallzone" to="Steve" method="_on_fallzone_body_entered"]
+[connection signal="body_entered" from="fallzone3" to="Steve" method="_on_fallzone_body_entered"]
 [connection signal="body_entered" from="fallzone2" to="Steve" method="_on_fallzone_body_entered"]
