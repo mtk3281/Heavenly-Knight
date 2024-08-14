@@ -31,7 +31,6 @@
 
     ```sh
     git clone https://github.com/mtk3281/Heavenly-Knight.git
-    cd celeste-knight
     ```
 
 2. **Install Godot Engine**
